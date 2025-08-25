@@ -53,10 +53,10 @@ def analyze_video_organized(video_filename, spatial_downsample=None, max_frames=
         total_pixels = original_width * original_height
         
         if total_pixels <= 400000:  # ~640x625 or smaller (e.g., 608x608 = 369,664)
-            spatial_downsample = 2  # Light downsampling for smaller videos
+            spatial_downsample = 1  # Light downsampling for smaller videos
             reasoning = "small resolution"
         elif total_pixels <= 1000000:  # ~1000x1000 or smaller
-            spatial_downsample = 3  # Moderate downsampling
+            spatial_downsample = 2  # Moderate downsampling
             reasoning = "medium resolution"
         elif total_pixels <= 2000000:  # ~1414x1414 or smaller (e.g., 1080x1440 = 1,555,200)
             spatial_downsample = 4  # Standard downsampling
@@ -324,7 +324,7 @@ if __name__ == "__main__":
         'spatial_downsample': None,  # Auto-determine based on video resolution
         'max_frames': 1000,  # Process 1000 frames for extended temporal coverage
         'baseline_method': 'percentile',
-        'baseline_percentile': 5
+        'baseline_percentile': 10
     }
     
     print("Analysis Parameters:")
